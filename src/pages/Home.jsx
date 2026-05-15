@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import CharacterCard from '../components/CharacterCard'
 import Loader from '../components/Loader'
 import Pagination from '../components/Pagination'
 import SearchBar from '../components/SearchBar'
 import { listVariants, pageTransition, pageVariants } from '../animations/pageTransitions'
 import { useDebounce } from '../hooks/useDebounce'
-import { getCharactersPage } from '../services/api'
+import { getCharacters, getCharactersPage } from '../services/api'
 import '../styles/home.css'
 
 function Home() {
@@ -17,6 +17,8 @@ function Home() {
   const [search, setSearch] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [featuredCharacters, setFeaturedCharacters] = useState([])
+  const [featuredIndex, setFeaturedIndex] = useState(0)
   const debouncedSearch = useDebounce(search.trim(), 350)
 
   useEffect(() => {
@@ -45,10 +47,38 @@ function Home() {
     return () => controller.abort()
   }, [page, debouncedSearch])
 
+  useEffect(() => {
+    let active = true
+
+    getCharacters()
+      .then((data) => {
+        if (active) setFeaturedCharacters(data.characters)
+      })
+      .catch(() => {
+        if (active) setFeaturedCharacters([])
+      })
+
+    return () => {
+      active = false
+    }
+  }, [])
+
+  useEffect(() => {
+    if (featuredCharacters.length <= 1) return undefined
+
+    const interval = setInterval(() => {
+      setFeaturedIndex((currentIndex) => (currentIndex + 1) % featuredCharacters.length)
+    }, 3000)
+
+    return () => clearInterval(interval)
+  }, [featuredCharacters.length])
+
   const handleSearchChange = (value) => {
     setSearch(value)
     setPage(1)
   }
+
+  const featuredCharacter = featuredCharacters[featuredIndex]
 
   return (
     <motion.section
@@ -68,8 +98,30 @@ function Home() {
           </p>
         </div>
         <div className="hero__stats" aria-label="Resumen de personajes">
-          <span>{totalCharacters || '...'}</span>
-          <small>personajes encontrados</small>
+          <AnimatePresence mode="wait">
+            {featuredCharacter && (
+              <motion.div
+                key={featuredCharacter.id}
+                className="hero__featured"
+                initial={{ opacity: 0, scale: 0.92, y: 12 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.92, y: -12 }}
+                transition={{ duration: 0.35 }}
+              >
+                <img src={featuredCharacter.image} alt={featuredCharacter.name} />
+                <div>
+                  <strong>{featuredCharacter.name}</strong>
+                  {/* <small>
+                    {featuredCharacter.status} · {featuredCharacter.gender} · {featuredCharacter.species}
+                  </small> */}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <div className="hero__total">
+            <span>{totalCharacters || '...'}</span>
+            <small>personajes encontrados</small>
+          </div>
         </div>
       </div>
 

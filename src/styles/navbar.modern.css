@@ -31,17 +31,21 @@
 
 .navbar__brand-mark {
   animation: brand-bounce 2.8s ease-in-out infinite;
-  background: var(--gradient-portal);
+  background: rgba(244, 240, 208, 0.76);
   border: 2px solid rgba(63, 125, 50, 0.38);
-  border-radius: 16px;
+  border-radius: 50%;
   box-shadow: 0 0 20px rgba(232, 242, 109, 0.66), 0 8px 18px rgba(63, 125, 50, 0.2);
-  color: var(--ink);
   display: grid;
-  font-size: 0.78rem;
-  height: 38px;
-  letter-spacing: 0.04em;
+  height: 50px;
+  overflow: hidden;
   place-items: center;
-  width: 46px;
+  width: 50px;
+}
+
+.navbar__brand-mark img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
 }
 
 .navbar__links {

@@ -88,27 +88,91 @@
 }
 
 .hero__stats {
-  align-items: center;
+  align-items: stretch;
   display: flex;
+  flex-direction: column;
   gap: 12px;
   justify-content: space-between;
   padding: 20px;
 }
 
-.hero__stats span {
+.hero__total {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+.hero__total span {
+  display: block;
   color: var(--organic-green);
   font-size: clamp(2rem, 7vw, 3.4rem);
   font-weight: 950;
   text-shadow: 0 0 18px rgba(126, 217, 87, 0.65);
 }
 
-.hero__stats small {
+.hero__total small,
+.hero__featured small {
   color: var(--color-muted);
   font-size: 0.86rem;
   font-weight: 900;
   letter-spacing: 0.06em;
-  text-align: right;
   text-transform: uppercase;
+}
+
+.hero__featured {
+  align-items: center;
+  background: rgba(244, 240, 208, 0.78);
+  border: 2px solid rgba(91, 194, 54, 0.28);
+  border-radius: 28px;
+  box-shadow:
+    0 12px 24px rgba(63, 125, 50, 0.12),
+    0 0 24px rgba(126, 217, 87, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+  justify-content: center;
+  min-height: 290px;
+  overflow: hidden;
+  padding: 18px;
+  text-align: center;
+}
+
+.hero__featured img {
+  border: 3px solid rgba(91, 194, 54, 0.42);
+  border-radius: 24px;
+  box-shadow:
+    0 0 22px rgba(126, 217, 87, 0.42),
+    0 10px 20px rgba(63, 125, 50, 0.18);
+  height: 180px;
+  object-fit: cover;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+  width: 100%;
+}
+
+.hero__featured:hover img {
+  box-shadow:
+    0 0 32px rgba(126, 217, 87, 0.7),
+    0 18px 28px rgba(63, 125, 50, 0.28);
+  transform: scale(1.03);
+}
+
+.hero__featured strong {
+  color: var(--ink);
+  display: block;
+  font-size: 1rem;
+  font-weight: 950;
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+
+.hero__featured small {
+  display: block;
+  line-height: 1.35;
 }
 
 .toolbar,
@@ -300,10 +364,6 @@
     align-items: flex-start;
     flex-direction: column;
     justify-content: flex-end;
-  }
-
-  .hero__stats small {
-    text-align: left;
   }
 
   .toolbar,

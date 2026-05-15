@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { FaBars, FaHome, FaTimes } from 'react-icons/fa'
 import { GiAlienBug } from 'react-icons/gi'
+import rickMortyIcon from '../assets/icons/rick.png'
 import '../styles/navbar.modern.css'
 
 const navLinks = [
@@ -21,7 +22,9 @@ function Navbar() {
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
     >
       <NavLink className="navbar__brand" to="/" onClick={() => setOpen(false)}>
-        <span className="navbar__brand-mark">RM</span>
+        <span className="navbar__brand-mark">
+          <img src={rickMortyIcon} alt="Rick and Morty" />
+        </span>
         <span>RickVerse</span>
       </NavLink>
 
