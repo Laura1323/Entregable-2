@@ -1,0 +1,67 @@
+.loader {
+  align-items: center;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(126, 217, 87, 0.34), transparent 44%),
+    linear-gradient(145deg, rgba(244, 240, 208, 0.94), rgba(232, 242, 109, 0.58));
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+  color: var(--ink);
+  display: flex;
+  font-weight: 950;
+  gap: 16px;
+  justify-content: center;
+  margin: 28px 0;
+  min-height: 150px;
+  overflow: hidden;
+  padding: 24px;
+  position: relative;
+  text-align: center;
+}
+
+.loader::after {
+  animation: shimmer 1.8s infinite;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  content: "";
+  inset: 0;
+  position: absolute;
+  transform: translateX(-100%);
+}
+
+.loader__portal {
+  animation: portal-spin 1.1s linear infinite;
+  background: var(--gradient-portal);
+  border: 2px solid rgba(63, 125, 50, 0.28);
+  border-radius: 50%;
+  box-shadow: 0 0 24px rgba(126, 217, 87, 0.58), 0 0 32px rgba(98, 208, 255, 0.28);
+  flex: 0 0 auto;
+  height: 46px;
+  position: relative;
+  width: 46px;
+}
+
+.loader__portal::after {
+  background: var(--cream);
+  border-radius: 50%;
+  content: "";
+  inset: 9px;
+  position: absolute;
+}
+
+@keyframes portal-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (max-width: 520px) {
+  .loader {
+    flex-direction: column;
+  }
+}

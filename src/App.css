@@ -1,7 +1,13 @@
 .app-container {
   margin: 0 auto;
-  max-width: 1180px;
-  min-height: calc(100vh - 74px);
-  padding: 0 clamp(16px, 5vw, 64px);
+  max-width: 1440px;
+  min-height: 100vh;
+  padding: 92px clamp(16px, 4vw, 56px) 56px;
   width: 100%;
+}
+
+@media (max-width: 640px) {
+  .app-container {
+    padding-top: 82px;
+  }
 }

@@ -1,23 +1,20 @@
-import { Route, Routes } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import ErrorPage from './pages/ErrorPage'
-import Home from './pages/Home'
-import Species from './pages/Species'
-import './App.css'
+import Navbar from './components/Navbar';
+import AppRoutes from './routes/AppRoutes';
+import { AnimatePresence } from 'framer-motion';
+import './App.css';
+import './styles/theme.css';
 
 function App() {
   return (
     <>
       <Navbar />
       <main className="app-container">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/species" element={<Species />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
+        <AnimatePresence mode="wait">
+          <AppRoutes />
+        </AnimatePresence>
       </main>
     </>
-  )
+  );
 }
 
 export default App

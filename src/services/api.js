@@ -2,14 +2,22 @@ const BASE_URL = 'https://rickandmortyapi.com/api'
 const CHARACTER_URL = `${BASE_URL}/character`
 
 function buildCharacterUrl(params = {}) {
-  const queryParams = new URLSearchParams(params)
+  const cleanParams = Object.entries(params).filter(([, value]) => value)
+  const queryParams = new URLSearchParams(cleanParams)
   const queryString = queryParams.toString()
 
   return queryString ? `${CHARACTER_URL}?${queryString}` : CHARACTER_URL
 }
 
-async function fetchPage(url) {
+async function fetchCharacters(url) {
   const response = await fetch(url)
+
+  if (response.status === 404) {
+    return {
+      info: { count: 0, pages: 0, next: null, prev: null },
+      results: [],
+    }
+  }
 
   if (!response.ok) {
     throw new Error('No se pudieron cargar los personajes.')
@@ -19,14 +27,14 @@ async function fetchPage(url) {
 }
 
 async function fetchAllCharacters(url) {
-  const firstPage = await fetchPage(url)
+  const firstPage = await fetchCharacters(url)
   const totalPages = firstPage.info.pages
   const pageRequests = []
 
   for (let page = 2; page <= totalPages; page += 1) {
     const nextUrl = new URL(url)
     nextUrl.searchParams.set('page', page)
-    pageRequests.push(fetchPage(nextUrl.toString()))
+    pageRequests.push(fetchCharacters(nextUrl.toString()))
   }
 
   const otherPages = await Promise.all(pageRequests)
@@ -39,10 +47,18 @@ async function fetchAllCharacters(url) {
   }
 }
 
-// Obtener una sola página (20 personajes por página según API)
-export async function getCharactersPage(page = 1) {
-  const url = buildCharacterUrl({ page })
-  const data = await fetchPage(url)
+export async function getCharacterById(id) {
+  const response = await fetch(`${CHARACTER_URL}/${id}`)
+
+  if (!response.ok) {
+    throw new Error('No se pudo cargar el personaje.')
+  }
+
+  return response.json()
+}
+
+export async function getCharactersPage({ page = 1, name = '' } = {}) {
+  const data = await fetchCharacters(buildCharacterUrl({ page, name }))
 
   return {
     characters: data.results,
@@ -50,9 +66,8 @@ export async function getCharactersPage(page = 1) {
   }
 }
 
-export async function getCharactersBySpeciesPage(species, page = 1) {
-  const url = buildCharacterUrl({ species, page })
-  const data = await fetchPage(url)
+export async function getCharactersBySpeciesPage({ species, page = 1, name = '' }) {
+  const data = await fetchCharacters(buildCharacterUrl({ species, page, name }))
 
   return {
     characters: data.results,
@@ -60,7 +75,6 @@ export async function getCharactersBySpeciesPage(species, page = 1) {
   }
 }
 
-// Compatibilidad: funciones antiguas que descargan todo (menos eficiente)
 export function getCharacters() {
   return fetchAllCharacters(buildCharacterUrl())
 }

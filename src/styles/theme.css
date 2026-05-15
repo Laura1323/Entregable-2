@@ -1,0 +1,136 @@
+:root {
+  --portal-green: #6ccb3d;
+  --slime-green: #7ed957;
+  --acid-light: #a4e66e;
+  --cartoon-green: #5bc236;
+  --portal-yellow: #e8f26d;
+  --energy-yellow: #f5f08a;
+  --cream: #f4f0d0;
+  --warm-beige: #e7dfb0;
+  --rick-blue: #62d0ff;
+  --portal-blue: #42bff5;
+  --cartoon-turquoise: #6ee7d8;
+  --soft-gray: #cfcfcf;
+  --organic-green: #3f7d32;
+  --dead-red: #ef4444;
+  --ink: #24351f;
+
+  --color-bg: var(--cream);
+  --color-surface: rgba(244, 240, 208, 0.82);
+  --color-surface-strong: rgba(255, 250, 218, 0.95);
+  --color-border: rgba(91, 194, 54, 0.42);
+  --color-primary: var(--portal-green);
+  --color-secondary: var(--rick-blue);
+  --color-accent: var(--portal-yellow);
+  --color-warning: var(--energy-yellow);
+  --color-danger: var(--dead-red);
+  --color-muted: #6c7d5e;
+  --color-text: var(--ink);
+  --color-text-soft: #4f6247;
+  --gradient-main: linear-gradient(135deg, #6ccb3d 0%, #a4e66e 36%, #e8f26d 68%, #62d0ff 100%);
+  --gradient-portal: conic-gradient(from 190deg, #6ccb3d, #7ed957, #e8f26d, #62d0ff, #6ee7d8, #6ccb3d);
+  --gradient-danger: linear-gradient(135deg, #ef4444, #fb7185);
+  --shadow-card: 0 18px 42px rgba(63, 125, 50, 0.18);
+  --shadow-glow: 0 0 28px rgba(108, 203, 61, 0.36);
+  --shadow-cyan: 0 0 26px rgba(98, 208, 255, 0.26);
+  --radius-sm: 14px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --font-main: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at 12% 12%, rgba(126, 217, 87, 0.5), transparent 24%),
+    radial-gradient(circle at 84% 18%, rgba(232, 242, 109, 0.62), transparent 22%),
+    radial-gradient(circle at 72% 78%, rgba(98, 208, 255, 0.34), transparent 28%),
+    linear-gradient(135deg, #f4f0d0 0%, #e8f26d 38%, #a4e66e 72%, #f4f0d0 100%);
+  color: var(--color-text);
+  font-family: var(--font-main);
+  min-height: 100vh;
+}
+
+body::before {
+  background-image:
+    radial-gradient(circle, rgba(63, 125, 50, 0.14) 1px, transparent 1.5px),
+    linear-gradient(120deg, rgba(108, 203, 61, 0.12), transparent 42%);
+  background-size: 24px 24px, 100% 100%;
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: fixed;
+  z-index: -1;
+}
+
+body::after {
+  animation: portal-drift 12s ease-in-out infinite alternate;
+  background:
+    radial-gradient(circle, rgba(108, 203, 61, 0.42) 0 8%, rgba(232, 242, 109, 0.38) 12%, rgba(98, 208, 255, 0.2) 20%, transparent 38%),
+    radial-gradient(circle, rgba(126, 217, 87, 0.28), transparent 44%);
+  border-radius: 50%;
+  content: "";
+  filter: blur(0.5px);
+  height: 520px;
+  pointer-events: none;
+  position: fixed;
+  right: -190px;
+  top: 84px;
+  width: 520px;
+  z-index: -1;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--color-text);
+  letter-spacing: 0;
+  line-height: 1.04;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--portal-green), var(--portal-blue));
+  border-radius: 999px;
+}
+
+@keyframes portal-drift {
+  from {
+    opacity: 0.72;
+    transform: rotate(-8deg) scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotate(16deg) scale(1.08);
+  }
+}
