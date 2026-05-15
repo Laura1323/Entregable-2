@@ -1,14 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
-  // FaCalendarAlt,
   FaGenderless,
-  FaGlobeAmericas,
-  FaMapMarkerAlt,
   FaMars,
   FaQuestion,
-  FaSkull,
-  FaTv,
   FaVenus,
 } from 'react-icons/fa'
 import { GiDna2 } from 'react-icons/gi'
@@ -31,7 +26,6 @@ function GenderIcon({ gender }) {
 function CharacterCard({ character }) {
   const navigate = useNavigate()
   const status = statusClass[character.status] ?? 'unknown'
-  const type = character.type || 'Sin tipo especifico'
 
   const openDetail = () => navigate(`/character/${character.id}`)
 
@@ -71,37 +65,6 @@ function CharacterCard({ character }) {
               {character.gender}
             </span>
           </div>
-        </div>
-
-        <div className="character-card__type">
-          <FaSkull />
-          <span>{type}</span>
-        </div>
-
-        <div className="character-card__meta">
-          <span>
-            <FaGlobeAmericas />
-            <b>Origen</b>
-            {character.origin?.name}
-          </span>
-          <span>
-            <FaMapMarkerAlt />
-            <b>Ubicacion</b>
-            {character.location?.name}
-          </span>
-          <span>
-            <FaTv />
-            <b>Episodios</b>
-            {character.episode.length}
-          </span>
-        </div>
-
-        <div className="character-card__footer">
-          {/* <span>
-            <FaCalendarAlt />
-            Perfil #{character.id}
-          </span> */}
-          <strong>Ver ficha</strong>
         </div>
       </div>
     </motion.article>

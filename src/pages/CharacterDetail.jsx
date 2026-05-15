@@ -41,7 +41,6 @@ function CharacterDetail() {
   if (!character) return null
 
   const status = statusClass[character.status] ?? 'unknown'
-  const type = character.type || 'Sin tipo especifico'
 
   return (
     <motion.section
@@ -77,27 +76,32 @@ function CharacterDetail() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="page__eyebrow">Ficha premium #{character.id}</p>
           <h1>{character.name}</h1>
 
-          <div className="detail-tags">
-            <span className={`tag tag--status-${status}`}>
-              <FaHeartbeat />
-              {character.status}
-            </span>
-            <span className="tag tag--cyan">
-              <FaDna />
-              {character.species}
-            </span>
-            <span className="tag">
-              <FaGenderless />
-              {character.gender}
-            </span>
-          </div>
-
-          <div className="detail-type">{type}</div>
-
           <div className="detail-grid">
+            <div className="detail-card">
+              <span>ID</span>
+              <strong>{character.id}</strong>
+            </div>
+            <div className="detail-card">
+              <FaHeartbeat />
+              <span>Estado</span>
+              <strong>{character.status}</strong>
+            </div>
+            <div className="detail-card">
+              <FaDna />
+              <span>Especie</span>
+              <strong>{character.species}</strong>
+            </div>
+            <div className="detail-card">
+              <FaGenderless />
+              <span>Genero</span>
+              <strong>{character.gender}</strong>
+            </div>
+            <div className="detail-card">
+              <span>Tipo</span>
+              <strong>{character.type}</strong>
+            </div>
             <div className="detail-card">
               <FaGlobeAmericas />
               <span>Origen</span>
