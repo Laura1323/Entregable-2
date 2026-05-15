@@ -1,0 +1,41 @@
+.cards-grid {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.character-card {
+  background: #ffffff;
+  border: 1px solid #dfe8ea;
+  border-radius: 8px;
+  box-shadow: 0 14px 30px rgba(16, 32, 39, 0.12);
+  overflow: hidden;
+  text-align: left;
+}
+
+.character-card img {
+  aspect-ratio: 1;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+
+.character-card__body {
+  padding: 18px;
+}
+
+.character-card h3 {
+  color: #102027;
+  font-size: 1.2rem;
+  margin: 0 0 12px;
+}
+
+.character-card p {
+  color: #455a64;
+  margin: 6px 0;
+}
+
+.character-card span {
+  color: #102027;
+  font-weight: 800;
+}
