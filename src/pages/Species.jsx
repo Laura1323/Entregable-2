@@ -89,7 +89,7 @@ function Species() {
         <div className="filter-panel__top">
           <SearchBar value={search} onChange={handleSearchChange} placeholder="Buscar dentro de la especie..." />
           <label className="select-field" htmlFor="species">
-            <span>Selector</span>
+            <span>Especie</span>
             <select id="species" value={selectedSpecies} onChange={(event) => handleSpeciesChange(event.target.value)}>
               {speciesOptions.map((species) => (
                 <option key={species} value={species}>

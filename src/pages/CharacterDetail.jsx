@@ -7,7 +7,7 @@ import {
   FaGlobeAmericas,
   FaHeartbeat,
   FaMapMarkerAlt,
-  FaTv,
+  // FaTv,
 } from 'react-icons/fa'
 import Loader from '../components/Loader'
 import { pageTransition, pageVariants } from '../animations/pageTransitions'
@@ -79,10 +79,10 @@ function CharacterDetail() {
           <h1>{character.name}</h1>
 
           <div className="detail-grid">
-            <div className="detail-card">
+            {/* <div className="detail-card">
               <span>ID</span>
               <strong>{character.id}</strong>
-            </div>
+            </div> */}
             <div className="detail-card">
               <FaHeartbeat />
               <span>Estado</span>
@@ -112,11 +112,11 @@ function CharacterDetail() {
               <span>Ubicacion actual</span>
               <strong>{character.location?.name}</strong>
             </div>
-            <div className="detail-card">
+            {/* <div className="detail-card">
               <FaTv />
               <span>Episodios</span>
               <strong>{character.episode.length}</strong>
-            </div>
+            </div> */}
           </div>
         </motion.div>
       </article>
