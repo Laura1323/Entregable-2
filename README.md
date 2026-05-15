@@ -1,16 +1,69 @@
-# React + Vite
+# RickVerse - Rick and Morty API
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicacion SPA creada con React, Vite y React Router que consume la API publica de Rick and Morty.
 
-Currently, two official plugins are available:
+## Requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Node.js instalado
+- npm instalado
 
-## React Compiler
+## Instalacion
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Ejecuta este comando en la raiz del proyecto:
 
-## Expanding the ESLint configuration
+```bash
+npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Ejecutar en desarrollo
+
+Para iniciar el servidor local:
+
+```bash
+npm run dev
+```
+
+Luego abre en el navegador la URL que muestre Vite, normalmente:
+
+```bash
+http://localhost:5173
+```
+
+## Compilar para produccion
+
+Para generar la version final del proyecto:
+
+```bash
+npm run build
+```
+
+Los archivos compilados se crean en la carpeta `dist/`.
+
+## Revisar errores de codigo
+
+Para ejecutar ESLint:
+
+```bash
+npm run lint
+```
+
+## Tecnologias utilizadas
+
+- React JS
+- JavaScript ES6+
+- Vite
+- React Router DOM
+- Fetch API
+- Framer Motion
+- CSS moderno responsive
+- React Icons
+
+## Funcionalidades
+
+- Listado de personajes paginado
+- Busqueda por nombre
+- Filtro por especie
+- Detalle individual de personaje
+- Animaciones y transiciones con Framer Motion
+- Diseno responsive
+- Manejo de loading y errores
